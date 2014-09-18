@@ -17,3 +17,5 @@ Once you completed the classes and the tests ensure they are OK, you may gain
 deeper understanding of Hadoop by packaging them into a jar and executing against huge files.
 This way you will deal with a real Hadoop execution and not only map-reduce coding. This are
 out of scope for the training. For Hadoop installation instructions check http://hadoop.apache.org/
+
+http://www.cloudera.com/content/support/en/downloads.html

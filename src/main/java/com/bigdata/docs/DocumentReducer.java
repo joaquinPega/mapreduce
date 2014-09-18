@@ -38,11 +38,16 @@ public class DocumentReducer extends MapReduceBase implements Reducer<IntWritabl
     @Override
     public void reduce(IntWritable key, Iterator<Document> values, OutputCollector<Text, Text> collector,
                        Reporter reporter) throws IOException {
-        //TODO complete!
         /*
             Serialize document instances to XML using key as output key Text value
             and SimpleXML library to perform the serialization (http://simple.sourceforge.net/)
          */
+    	try {
+			serializer.write(values, writer);
+			//collector.collect(key.toString(), writer);
+		} catch (Exception e) {
+			
+		}
     	
     }
 }
