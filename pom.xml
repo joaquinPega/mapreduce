@@ -76,7 +76,7 @@
                                     <groupId>big-data</groupId>
                                     <artifactId>map-reduce</artifactId>
                                     <version>1.0.0-SNAPSHOT</version>
-                                    <type>test-jar</type>
+                                    <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>
                                         ${project.build.directory}/test-classes

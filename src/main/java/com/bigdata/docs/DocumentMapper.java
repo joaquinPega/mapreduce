@@ -33,5 +33,8 @@ public class DocumentMapper extends MapReduceBase
             Read a document from json format using the Gson library (https://code.google.com/p/google-gson/)
             Use the yyyyMMdd value as key to output the document
          */
+    	Gson gson = new Gson();
+    	gson.toJson(value.toString());
+    	
     }
 }
