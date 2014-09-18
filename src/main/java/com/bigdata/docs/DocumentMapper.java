@@ -34,7 +34,9 @@ public class DocumentMapper extends MapReduceBase
             Use the yyyyMMdd value as key to output the document
          */
     	Gson gson = new Gson();
-    	gson.toJson(value.toString());
+    	Document doc;
+    	doc = gson.fromJson(value.toString(), Document.class);
+    	collector.collect(new IntWritable(doc.getYyyyMMdd()), doc);
     	
     }
 }
