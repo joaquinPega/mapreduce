@@ -28,7 +28,6 @@ public class DocumentMapper extends MapReduceBase
     @Override
     public void map(Text key, Text value, OutputCollector<IntWritable, Document> collector, Reporter reporter)
             throws IOException {
-        //TODO complete!
         /*
             Read a document from json format using the Gson library (https://code.google.com/p/google-gson/)
             Use the yyyyMMdd value as key to output the document

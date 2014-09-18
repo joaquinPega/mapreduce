@@ -43,5 +43,6 @@ public class DocumentReducer extends MapReduceBase implements Reducer<IntWritabl
             Serialize document instances to XML using key as output key Text value
             and SimpleXML library to perform the serialization (http://simple.sourceforge.net/)
          */
+    	
     }
 }
