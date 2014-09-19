@@ -43,10 +43,14 @@ public class DocumentReducer extends MapReduceBase implements Reducer<IntWritabl
             and SimpleXML library to perform the serialization (http://simple.sourceforge.net/)
          */
     	try {
-			serializer.write(values, writer);
-			//collector.collect(key.toString(), writer);
+    		while(values.hasNext()){
+    			writer=new StringWriter();
+    			serializer.write(values.next(), writer);
+				collector.collect(new Text(key.toString()), new Text(writer.toString()));
+				System.out.println(writer.toString());
+    		}
 		} catch (Exception e) {
-			
+			collector.collect(new Text(key.toString()), new Text("<failure/>"));
 		}
     	
     }

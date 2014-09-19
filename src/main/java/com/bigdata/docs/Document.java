@@ -1,6 +1,7 @@
 package com.bigdata.docs;
 
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableUtils;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -20,14 +21,14 @@ import java.io.Serializable;
  * Created by jose.rozanec
  */
 @Root
-public class Document implements Serializable {
+public class Document implements Serializable, Writable {
     @Attribute
     private int yyyyMMdd;
     @Attribute
     private String uuid;
     @Element
     private String author;
-
+    
     /**
      * This constructor is required for serialization purposes.
      */
@@ -50,5 +51,21 @@ public class Document implements Serializable {
     public String getAuthor() {
         return author;
     }
+
+	@Override
+	public void readFields(DataInput in) throws IOException {
+		this.yyyyMMdd = in.readInt();
+		this.author = WritableUtils.readString(in);
+		this.uuid = WritableUtils.readString(in);
+		
+		
+	}
+
+	@Override
+	public void write(DataOutput out) throws IOException {
+		out.writeInt(this.yyyyMMdd);
+		WritableUtils.writeString(out, this.author);
+		WritableUtils.writeString(out, this.uuid);
+	}
 
 }

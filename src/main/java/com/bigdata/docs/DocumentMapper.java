@@ -13,8 +13,7 @@ import java.io.IOException;
 /**
  * Created by jose.rozanec
  */
-public class DocumentMapper extends MapReduceBase
-        implements org.apache.hadoop.mapred.Mapper<Text, Text, IntWritable, Document> {
+public class DocumentMapper extends MapReduceBase implements org.apache.hadoop.mapred.Mapper<Text, Text, IntWritable, Document> {
 
     /**
      * Reads documents in json format and collects them as a Document instance

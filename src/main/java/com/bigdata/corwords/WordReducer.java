@@ -5,19 +5,20 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
+
 /**
  * Counts the number of different co-occurrences for a given word.
  * Ex.: for word "hello" and co-occurrences ["world", "beauty", "animal"]
  * you should get ("hello", 3)
  */
-public class WordReducer extends Reducer<Text, Text, Text, IntWritable> {
+public class WordReducer extends MapReduceBase implements Reducer<Text, Text, Text, IntWritable> {
 
     /**
      *

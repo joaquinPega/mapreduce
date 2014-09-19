@@ -1,18 +1,10 @@
 package com.bigdata.corwords;
 
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.FileInputFormat;
-import org.apache.hadoop.mapred.FileOutputFormat;
-import org.apache.hadoop.mapred.JobClient;
-import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.MapReduceBase;
-import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reporter;
-import org.apache.hadoop.mapred.TextInputFormat;
-import org.apache.hadoop.mapred.TextOutputFormat;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -22,8 +14,7 @@ import java.util.StringTokenizer;
  * input as "Hello, today is a nice day" the mapper should output the following
  * tuples: [(hello, today), (today, is), (is, a), (a, nice), (nice, day)]
  */
-public class WordMapper extends Mapper 
-		<Text, Text, Text, Text> {
+public class WordMapper extends MapReduceBase implements Mapper<Text, Text, Text, Text> {
 	private Text first = new Text();
 	private Text second = new Text();
 
@@ -54,10 +45,8 @@ public class WordMapper extends Mapper
 	 *            much time
 	 * @throws IOException
 	 */
-	public void map(Text key, Text value,
-			OutputCollector<Text, Text> collector, Reporter reporter)
+	public void map(Text key, Text value,OutputCollector<Text, Text> collector, Reporter reporter)
 			throws IOException {
-		// TODO complete!
 		/*
 		 * If you have an input as "Hello, today is a nice day" the mapper
 		 * should output the following tuples: [(hello, today), (today, is),
