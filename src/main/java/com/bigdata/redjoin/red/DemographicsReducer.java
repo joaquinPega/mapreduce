@@ -42,6 +42,15 @@ public class DemographicsReducer extends MapReduceBase implements Reducer<Text, 
 
              Information will be sent in the following format: "%s, %s, %s, %s"
         */
+        while(values.hasNext()){
+        	TaggedText tt = values.next();
+        	if(tt.getTag().equals(JoinTags.MUNICIPALITY.toString())){
+        		demographicsReport.addMunicipalityArea(tt.getText());
+        	}else if(tt.getTag().equals(JoinTags.PERSON.toString())){
+        		String [] array = tt.getText().split(","); 
+        		demographicsReport.addPersonData(array[0], array[1]);
+        	}
+        }
         String report = String.format("%s, %s, %s, %s",
                 demographicsReport.getTotalPersons(),
                 demographicsReport.getTotalPersons() - demographicsReport.getLess18(),
