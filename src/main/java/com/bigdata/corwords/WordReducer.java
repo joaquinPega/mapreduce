@@ -30,7 +30,7 @@ public class WordReducer extends MapReduceBase implements Reducer<Text, Text, Te
      */
     public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, IntWritable> collector, Reporter reporter)
             throws IOException {
-        //TODO complete!
+       
         /*
             Ex.: for word "hello" and co-occurrences ["world", "beauty", "animal"]
             you should get ("hello", 3)

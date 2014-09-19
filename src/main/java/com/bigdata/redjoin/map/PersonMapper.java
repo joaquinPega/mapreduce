@@ -25,7 +25,7 @@ public class PersonMapper extends MapReduceBase implements Mapper<LongWritable, 
     }
 
     public void map(LongWritable key, Text value, OutputCollector<Text, TaggedText> output, Reporter reporter) throws IOException {
-        //TODO complete!
+        
         /*
             Ignore the key value
             Consider Text value comes in the following format: id,name,surname,sex,bornYYYY,ZIP
@@ -40,5 +40,9 @@ public class PersonMapper extends MapReduceBase implements Mapper<LongWritable, 
             Use the PersonRecordParser to parse values and
             output a TaggedText with PERSON JoinTag and sex and bornYYYY value as Text("%s,%s")
          */
+    	Person person;
+    	person = parser.parseFromCSV(value.toString());
+    	TaggedText taggedText = new TaggedText(JoinTags.PERSON.toString(),person.getSex() + ","+ person.getBornYYYY());
+    	output.collect(new Text(person.getZip()), taggedText);
     }
 }

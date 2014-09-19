@@ -4,6 +4,7 @@ import com.bigdata.redjoin.JoinTags;
 import com.bigdata.redjoin.Municipality;
 import com.bigdata.redjoin.TaggedText;
 import com.bigdata.redjoin.parse.MunicipalityRecordParser;
+
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.MapReduceBase;
@@ -35,7 +36,7 @@ public class MunicipalityMapper extends MapReduceBase implements Mapper<LongWrit
      * @throws IOException
      */
     public void map(LongWritable key, Text value, OutputCollector<Text, TaggedText> output, Reporter reporter) throws IOException {
-        //TODO complete!
+        
         /*
             Ignore the key value
             Consider Text value comes in the following format: ZIP,name,km2,trees
@@ -48,5 +49,12 @@ public class MunicipalityMapper extends MapReduceBase implements Mapper<LongWrit
             Use the MunicipalityRecordParser to parse values and
             output a TaggedText with MUNICIPALITY JoinTag and km2 value as Text
          */
+    	
+    	Municipality municipality;
+    	municipality = parser.parseFromCSV(value.toString());
+    	
+    	TaggedText taggedText=new TaggedText(JoinTags.MUNICIPALITY.toString(), municipality.getKm2());
+    	output.collect(new Text(municipality.getZip()), taggedText);
+    	
     }
 }

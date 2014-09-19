@@ -27,9 +27,13 @@ public class WordMapper extends MapReduceBase implements Mapper<Text, Text, Text
 	 * @return - String - normalized string, never <code>null</code>
 	 */
 	private String normalize(String string) {
-		return string.replace(",", "").replace("\\.", "").replace("!", "")
-				.replace("¡", "").replace("?", "").replace("¿", "")
-				.toLowerCase().trim();
+		return string.replace(",", "")
+					 .replace("\\.", "")
+					 .replace("!", "")
+					 .replace("¡", "")
+					 .replace("?", "")
+					 .replace("¿", "")
+					 .toLowerCase().trim();
 	}
 
 	/**
@@ -52,8 +56,7 @@ public class WordMapper extends MapReduceBase implements Mapper<Text, Text, Text
 		 * should output the following tuples: [(hello, today), (today, is),
 		 * (is, a), (a, nice), (nice, day)]
 		 */
-		StringTokenizer tokenizer = new StringTokenizer(
-				normalize(value.toString()));
+		StringTokenizer tokenizer = new StringTokenizer(normalize(value.toString()));
 		if (tokenizer.hasMoreTokens()) { // checks for empty archive
 			first.set(tokenizer.nextToken());
 		}
