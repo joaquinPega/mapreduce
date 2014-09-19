@@ -47,7 +47,6 @@ public class DocumentReducer extends MapReduceBase implements Reducer<IntWritabl
     			writer=new StringWriter();
     			serializer.write(values.next(), writer);
 				collector.collect(new Text(key.toString()), new Text(writer.toString()));
-				System.out.println(writer.toString());
     		}
 		} catch (Exception e) {
 			collector.collect(new Text(key.toString()), new Text("<failure/>"));

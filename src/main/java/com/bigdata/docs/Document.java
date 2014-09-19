@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /*
-     //TODO!
+     
      Implement the org.apache.hadoop.io.Writable interface.
      This is required so that the class serializes between map and reduce phase.
  */
